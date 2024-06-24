@@ -40,7 +40,7 @@ class GripperController(Node):
                 # Fully open
                 case 0:
                     msg_ctrl_msg.initialize = False
-                    msg_ctrl_msg.position = 1000.0
+                    msg_ctrl_msg.position = 0.0
                     msg_ctrl_msg.force = 200.0
                     msg_ctrl_msg.speed = 100.0
                 # 50% open
@@ -52,47 +52,11 @@ class GripperController(Node):
                 # Fully close
                 case 2:
                     msg_ctrl_msg.initialize = False
-                    msg_ctrl_msg.position = 0.0
+                    msg_ctrl_msg.position = 1000.0
                     msg_ctrl_msg.force = 200.0
                     msg_ctrl_msg.speed = 100.0
         self.gripper_ctrl_pub.publish(msg_ctrl_msg)
 
-        # self.i = 0.0
-        # if(self.i != 1000.0):
-        #     msg_ctrl_pub.initialize = False
-        #     msg_ctrl_pub.position = 1000.0
-        #     msg_ctrl_pub.force = 200.0
-        #     msg_ctrl_pub.speed = 100.0
-        #     self.publisher_.publish(msg_ctrl_pub)
-        #     self.i = 1000.0
-        #     time.sleep(1)
-        # print("position: 1000.0")
-        # if(self.i != 0.0):
-        #     msg_ctrl_pub.initialize = False
-        #     msg_ctrl_pub.position = 0.0
-        #     msg_ctrl_pub.force = 200.0
-        #     msg_ctrl_pub.speed = 100.0
-        #     self.publisher_.publish(msg_ctrl_pub)
-        #     self.i = 0.0
-        #     time.sleep(1)
-        # print("position: 0.0")
-        # for i in range(1000):
-        #     msg.initialize = False
-        #     msg.position = float(i)
-        #     msg.force = 50.0
-        #     msg.speed = 100.0
-        #     self.publisher_.publish(msg)
-        #     time.sleep(0.5/1000)
-        # for i in range(1000,0,-1):
-        #     msg.initialize = False
-        #     msg.position = float(i)
-        #     msg.force = 50.0
-        #     msg.speed = 100.0
-        #     self.publisher_.publish(msg)
-        #     time.sleep(0.5/1000)
-
-        # self.get_logger().info('Publishing: "%s"' % msg.data)
-        # self.i += 1
     
     def gripper_callback(self, msgs):    #sub
         self.m_position = msgs.position
