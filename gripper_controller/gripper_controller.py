@@ -5,7 +5,7 @@ from rclpy.node import Node
 from std_msgs.msg import String
 from dh_gripper_ros2.msg import GripperCtrl
 from dh_gripper_ros2.msg import GripperState #sub
-
+# ?=
 
 class GripperController(Node):
 
