@@ -9,7 +9,7 @@ from dh_gripper_ros2.msg import GripperState #sub
 
 class GripperController(Node):
 
-    timer_period = 0.5  # seconds
+    timer_period = 0.01  # seconds
     i = 0
     state = 0
     isReset = False
@@ -40,7 +40,7 @@ class GripperController(Node):
                 # Fully open
                 case 0:
                     msg_ctrl_msg.initialize = False
-                    msg_ctrl_msg.position = 0.0
+                    msg_ctrl_msg.position = 1000.0
                     msg_ctrl_msg.force = 200.0
                     msg_ctrl_msg.speed = 100.0
                 # 50% open
@@ -52,7 +52,7 @@ class GripperController(Node):
                 # Fully close
                 case 2:
                     msg_ctrl_msg.initialize = False
-                    msg_ctrl_msg.position = 1000.0
+                    msg_ctrl_msg.position = 0.0
                     msg_ctrl_msg.force = 200.0
                     msg_ctrl_msg.speed = 100.0
         self.gripper_ctrl_pub.publish(msg_ctrl_msg)
