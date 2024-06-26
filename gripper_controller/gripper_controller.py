@@ -62,9 +62,9 @@ class GripperController(Node):
         self.m_position = msgs.position
         self.m_target_position = msgs.target_position
         self.m_target_force = msgs.target_force
-        self.get_logger().info(f"Position = {self.m_position}")
-        self.get_logger().info(f"Target position = {self.m_target_position}")
-        self.get_logger().info(f"Target force = {self.m_target_force}")
+        # self.get_logger().info(f"Position = {self.m_position}")
+        # self.get_logger().info(f"Target position = {self.m_target_position}")
+        # self.get_logger().info(f"Target force = {self.m_target_force}")
 
     def gripper_cmd_callback(self, msgs):
         self.state = int(msgs.data)
