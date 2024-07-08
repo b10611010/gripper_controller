@@ -9,7 +9,7 @@ from dh_gripper_ros2.msg import GripperState #sub
 
 class GripperController(Node):
 
-    timer_period = 0.01  # seconds
+    timer_period = 0.005  # seconds
     i = 0
     state = 0
     isReset = False
@@ -21,9 +21,11 @@ class GripperController(Node):
     def __init__(self):
         super().__init__('gripper_controller')
         self.timer = self.create_timer(self.timer_period, self.gripper_control)
+        # Publisher
         self.gripper_ctrl_pub = self.create_publisher(GripperCtrl, "/gripper/ctrl", 10)
-        self.gripper_state_sub = self.create_subscription(GripperState, '/gripper/states', self.gripper_callback, 10) #sub
-        self.gripper_state_sub #sub
+        # Subscriber
+        self.gripper_state_sub = self.create_subscription(GripperState, '/gripper/states', self.gripper_callback, 10) 
+        self.gripper_state_sub
         self.gripper_cmd_sub = self.create_subscription(String, 'gripper_cmd', self.gripper_cmd_callback, 10)
         self.gripper_cmd_sub
 
@@ -42,19 +44,19 @@ class GripperController(Node):
                     msg_ctrl_msg.initialize = False
                     msg_ctrl_msg.position = 1000.0
                     msg_ctrl_msg.force = 1000.0
-                    msg_ctrl_msg.speed = 100.0
+                    msg_ctrl_msg.speed = 5.0
                 # 50% open
                 case 1:
                     msg_ctrl_msg.initialize = False
                     msg_ctrl_msg.position = 500.0
                     msg_ctrl_msg.force = 1000.0
-                    msg_ctrl_msg.speed = 100.0
+                    msg_ctrl_msg.speed = 5.0
                 # Fully close
                 case 2:
                     msg_ctrl_msg.initialize = False
                     msg_ctrl_msg.position = 0.0
                     msg_ctrl_msg.force = 200.0
-                    msg_ctrl_msg.speed = 100.0
+                    msg_ctrl_msg.speed = 5.0
         self.gripper_ctrl_pub.publish(msg_ctrl_msg)
 
     
